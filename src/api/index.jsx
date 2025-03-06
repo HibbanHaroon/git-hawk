@@ -1,4 +1,4 @@
-export { GET_USERS } from './endpoints'
+export { ENDPOINTS } from './endpoints'
 
 export { UserModel } from './models/user'
 export { RepositoryModel } from './models/respository'
