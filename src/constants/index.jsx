@@ -1,2 +1,3 @@
 export { theme } from './theme'
-export { publicRoutes } from './routes'
+export { HOME_ROUTE, PROFILE_ROUTE, publicRoutes } from './routes'
+export { ASSETS } from './assets'
