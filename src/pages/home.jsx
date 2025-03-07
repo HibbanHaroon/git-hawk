@@ -1,25 +1,35 @@
-import { Flex, Typography, Input } from 'antd'
-import { ASSETS, HOME_ROUTE } from '../constants'
-import { useNavigate } from 'react-router-dom'
+import { Flex, Typography, Input, theme } from 'antd'
+import { ASSETS } from '../constants'
+import { SearchTextfield } from '../components'
 
 const { Text } = Typography
-const { Search } = Input
+const { useToken } = theme
 
 function Home() {
-  const navigate = useNavigate()
-  const handleSearch = (value) => {
-    // TODO: Can I use ProfileRoute and can it pick up value somehow
-    navigate(`${HOME_ROUTE}${value}`)
-  }
+  const { token } = useToken()
+
   return (
-    <Flex justify="center" align="center" vertical>
-      <img src={ASSETS.GITHUB_ICON} alt="Github Icon" />
-      <Text>Search for github users like Hawk. You'll love it too.</Text>
-      <Search
-        size="large"
-        placeholder="Search a name"
-        onSearch={handleSearch}
-      />
+    <Flex
+      justify="center"
+      align="center"
+      vertical
+      style={{
+        width: '100vw',
+        height: '100vh',
+        backgroundColor: token.colorNeutral,
+      }}
+    >
+      {/* <img src={ASSETS.GITHUB_ICON} alt="Github Icon" width={'10%'} />
+      <Text
+        style={{
+          fontSize: '2rem',
+          fontWeight: '700',
+          color: token.colorPrimary,
+        }}
+      >
+        Hawk a user too
+      </Text> */}
+      <SearchTextfield />
     </Flex>
   )
 }
