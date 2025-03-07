@@ -8,6 +8,19 @@ class Repository {
     this.stars = data.stargazers_count || 0
     this.language = data.langauge || null
   }
+
+  toString() {
+    const str = `
+      id: ${this.id}
+      name: ${this.name}
+      description: ${this.description}
+      url: ${this.url}
+      type: ${this.type}
+      stars: ${this.stars}
+      language: ${this.language}
+    `
+    return str
+  }
 }
 
 export default Repository

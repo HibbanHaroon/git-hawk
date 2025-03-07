@@ -1,4 +1,4 @@
-import { RepositoryModel } from '../models/respository'
+import RepositoryModel from '../models/respository'
 
 export async function getRepositoryList(url) {
   try {

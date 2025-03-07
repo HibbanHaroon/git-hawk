@@ -11,6 +11,22 @@ class UserModel {
     this.following = data.following || 0
     this.reposUrl = data.repos_url || null
   }
+
+  toString() {
+    const str = `
+      id: ${this.id}
+      name: ${this.name}
+      imageUrl: ${this.imageUrl}
+      company: ${this.company}
+      location: ${this.location}
+      bio: ${this.bio}
+      publicRepos: ${this.bio}
+      followers: ${this.followers}
+      following: ${this.following}
+      reposUrl: ${this.reposUrl}
+    `
+    return str
+  }
 }
 
 export default UserModel
