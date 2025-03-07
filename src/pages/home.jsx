@@ -7,7 +7,7 @@ const { Search } = Input
 
 function Home() {
   const navigate = useNavigate()
-  const handleSearch = (value, event) => {
+  const handleSearch = (value) => {
     // TODO: Can I use ProfileRoute and can it pick up value somehow
     navigate(`${HOME_ROUTE}${value}`)
   }
