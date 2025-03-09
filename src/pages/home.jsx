@@ -21,8 +21,10 @@ function Home() {
         backgroundColor: token.colorPrimary,
       }}
     >
+      <div style={{ zIndex: '10' }}>
+        <img src={ASSETS.GITHUB_ICON} alt="Github Icon" />
+      </div>
       <SemiCirclesContainer />
-      <>as</>
     </Flex>
   )
 }
