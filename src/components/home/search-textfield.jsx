@@ -1,5 +1,4 @@
 import { useSearch } from '../../hooks'
-import './styles/search-textfield.css'
 
 function SearchTextfield() {
   const { setSearch, handleSearch } = useSearch()
