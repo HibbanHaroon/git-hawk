@@ -1,4 +1,5 @@
 import { useSearch } from '../../hooks'
+import './styles/search-textfield.css'
 
 function SearchTextfield() {
   const { setSearch, handleSearch } = useSearch()
@@ -16,9 +17,9 @@ function SearchTextfield() {
   return (
     <input
       type="text"
-      id="search"
+      className="textfield"
       name="search"
-      placeholder="Search a name"
+      placeholder="GitHub username"
       onChange={handleChange}
       onKeyDown={handleKeyDown}
     />

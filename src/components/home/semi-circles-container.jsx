@@ -8,6 +8,7 @@ function SemiCirclesContainer() {
         top: '45vh',
         height: '100vh',
         opacity: '0.5',
+        // filter: 'blur(30px)',
       }}
     >
       <SemiCircle

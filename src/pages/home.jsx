@@ -21,9 +21,30 @@ function Home() {
         backgroundColor: token.colorPrimary,
       }}
     >
-      <div style={{ zIndex: '10' }}>
+      <Flex justify="center" align="center" vertical style={{ zIndex: '10' }}>
         <img src={ASSETS.GITHUB_ICON} alt="Github Icon" />
-      </div>
+        <Text
+          style={{
+            fontSize: 'clamp(2rem, 5vw, 5rem)',
+            lineHeight: 'normal',
+            color: token.colorAccent,
+          }}
+        >
+          Hawk your Git
+        </Text>
+        <Text
+          style={{
+            fontSize: 'clamp(0.7rem, 1.2vw, 1.2rem)',
+            marginTop: '1rem',
+            lineHeight: 'normal',
+            textAlign: 'center',
+            color: token.colorAccent,
+          }}
+        >
+          A minimalist platform where you can look for your GitHub stats.
+        </Text>
+        <SearchTextfield />
+      </Flex>
       <SemiCirclesContainer />
     </Flex>
   )

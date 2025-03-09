@@ -1,0 +1,24 @@
+.textfield {
+  outline: none;
+  margin: 48px;
+  padding: 12px;
+  background: url('/public/assets/icons/search-icon.svg') no-repeat 10px 50%,
+    #151515;
+  padding-left: 36px;
+
+  border-radius: 8px;
+  border: 1px solid #545454;
+
+  font-family: 'Inter';
+  font-size: 16px;
+  color: #fbfbfb;
+
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.textfield:focus {
+  outline: 1px solid #fbfbfb;
+  border: 1px solid #fbfbfb;
+}
