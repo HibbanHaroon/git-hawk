@@ -1,16 +1,36 @@
+import { useState } from 'react'
+
 function SemiCircle({ width, height, backgroundColor, zIndex, children }) {
+  const [isHovered, setIsHovered] = useState(false)
+
+  let timeoutId = null
+
+  const handleMouseEnter = () => {
+    clearTimeout(timeoutId)
+    setIsHovered(true)
+  }
+
+  const handleMouseLeave = () => {
+    timeoutId = setTimeout(() => {
+      setIsHovered(false)
+    }, 200)
+  }
+
   return (
     <div
       style={{
         width: width,
         height: height,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        position: 'absolute',
         backgroundColor: backgroundColor,
         borderRadius: '100%',
         zIndex: zIndex,
+        transition: 'transform 0.2s ease-in-out',
+        transform: isHovered ? 'scale(1.02)' : 'scale(1)',
       }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onMouseMove={handleMouseEnter}
     >
       {children}
     </div>
