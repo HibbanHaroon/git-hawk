@@ -1,6 +1,6 @@
 import { Flex, Typography, Input, theme } from 'antd'
 import { ASSETS } from '../constants'
-import { SearchTextfield } from '../components'
+import { SearchTextfield, SemiCirclesContainer } from '../components'
 
 const { Text } = Typography
 const { useToken } = theme
@@ -16,9 +16,14 @@ function Home() {
       style={{
         width: '100vw',
         height: '100vh',
+        overflow: 'hidden',
+        position: 'relative',
         backgroundColor: token.colorPrimary,
       }}
-    ></Flex>
+    >
+      <SemiCirclesContainer />
+      <>as</>
+    </Flex>
   )
 }
 
