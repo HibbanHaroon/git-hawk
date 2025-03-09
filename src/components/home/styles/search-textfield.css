@@ -2,11 +2,11 @@
   outline: none;
   margin: 48px;
   padding: 12px;
-  background: url('/public/assets/icons/search-icon.svg') no-repeat 10px 50%,
+  background: url('/public/assets/icons/search-icon.svg') no-repeat 14px 50%,
     #151515;
-  padding-left: 36px;
+  padding-left: 40px;
 
-  border-radius: 8px;
+  border-radius: 32px;
   border: 1px solid #545454;
 
   font-family: 'Inter';
@@ -18,7 +18,12 @@
   -webkit-backdrop-filter: blur(5px);
 }
 
-.textfield:focus {
+.textfield:hover {
+  transition: border 0.4s ease-in-out, outline 0.4s ease-in-out;
+}
+
+.textfield:focus,
+.textfield:hover {
   outline: 1px solid #fbfbfb;
   border: 1px solid #fbfbfb;
 }

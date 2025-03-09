@@ -18,7 +18,7 @@ function SemiCirclesContainer() {
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
-        top: '45vh',
+        top: '120vh',
         height: '100vh',
         opacity: '0.5',
         // filter: 'blur(30px)',
