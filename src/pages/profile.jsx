@@ -1,7 +1,7 @@
 import { Flex, theme } from 'antd'
 import { useParams } from 'react-router-dom'
 import { useProfileData } from '../hooks'
-import { UserInformation } from '../components'
+import { GeneralInformation, UserInformation } from '../components'
 
 const { useToken } = theme
 
@@ -29,6 +29,7 @@ function Profile() {
         style={{ width: '70%', paddingTop: 24, paddingBottom: 24 }}
       >
         <UserInformation user={user} />
+        <GeneralInformation user={user} />
         {/* <p>{user.name}</p>
       {repositories.map((repsitory) => (
         <p key={repsitory.id}>{repsitory.name}</p>

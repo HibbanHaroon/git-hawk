@@ -7,7 +7,7 @@ const { useToken } = theme
 function UserInformation({ user }) {
   const { token } = useToken()
   return (
-    <Flex vertical>
+    <Flex vertical style={{ paddingBottom: 32 }}>
       <Flex justify="center">
         <Flex vertical>
           <Avatar size={80} src={user.imageUrl} />

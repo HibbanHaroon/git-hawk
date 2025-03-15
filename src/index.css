@@ -10,3 +10,7 @@
   margin: 0;
   padding: 0;
 }
+
+.ant-statistic-title {
+  color: #949495 !important;
+}
