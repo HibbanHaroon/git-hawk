@@ -19,9 +19,10 @@ function SearchTextfield() {
       type="text"
       className="textfield"
       name="search"
-      placeholder="GitHub username"
+      placeholder="Github username"
       onChange={handleChange}
       onKeyDown={handleKeyDown}
+      style={{ fontFamily: 'Montserrat', fontSize: '14px' }}
     />
   )
 }

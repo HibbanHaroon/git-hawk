@@ -25,15 +25,18 @@ function Home() {
         <img src={ASSETS.GITHUB_ICON} alt="Github Icon" />
         <Text
           style={{
+            fontFamily: 'Playfair Display',
             fontSize: 'clamp(2rem, 5vw, 5rem)',
             lineHeight: 'normal',
             color: token.colorAccent,
+            marginBlock: '12px 16px',
           }}
         >
           Hawk your Git
         </Text>
         <Text
           style={{
+            fontFamily: 'Montserrat',
             fontSize: 'clamp(0.7rem, 1.2vw, 1.2rem)',
             marginTop: '1rem',
             lineHeight: 'normal',
