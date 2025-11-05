@@ -14,3 +14,8 @@
 .ant-statistic-title {
   color: #949495 !important;
 }
+
+::selection {
+  background: #949495;
+  color: #000;
+}

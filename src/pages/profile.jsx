@@ -1,14 +1,17 @@
-import { Flex, theme } from 'antd'
+import { Flex, Grid, theme } from 'antd'
 import { useParams } from 'react-router-dom'
 import { useProfileData } from '../hooks'
 import { GeneralInformation, UserInformation } from '../components'
 
+const { useBreakpoint } = Grid
 const { useToken } = theme
 
 function Profile() {
   const { token } = useToken()
   const { username } = useParams()
   const { user, repositories } = useProfileData(username)
+  const screens = useBreakpoint()
+  const isXSDevice = !screens.sm
 
   if (user == null || repositories == null) {
     return <>Loading...</>
@@ -20,16 +23,20 @@ function Profile() {
       vertical
       style={{
         backgroundColor: token.colorPrimary,
-        width: '100vw',
-        height: '100vh',
+        width: '100%',
+        minHeight: '100vh',
       }}
     >
       <Flex
         vertical
-        style={{ width: '70%', paddingTop: 24, paddingBottom: 24 }}
+        style={{
+          width: isXSDevice ? 'min(75vw, 650px)' : 'min(60vw, 650px)',
+          height: '100%',
+          gap: 48,
+        }}
       >
         <UserInformation user={user} />
-        <GeneralInformation user={user} />
+        {/* <GeneralInformation user={user} /> */}
         {/* <p>{user.name}</p>
       {repositories.map((repsitory) => (
         <p key={repsitory.id}>{repsitory.name}</p>
