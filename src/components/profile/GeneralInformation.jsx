@@ -1,18 +1,29 @@
-import { Flex, Row, Col } from 'antd'
+import { Flex, Row, Col, theme } from 'antd'
 import GeneralInformationStatistic from './GeneralInformationStatistic'
 
 function StatisticCol({ children }) {
-  return (
-    <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
-      {children}
-    </Col>
-  )
+  return <Col span={8}>{children}</Col>
 }
 
+const { useToken } = theme
+
 function GeneralInformation({ user }) {
+  const { token } = useToken()
+
   return (
-    <Flex vertical style={{ paddingBottom: 32 }}>
-      <Row justify="center" gutter={[16, 16]} style={{ paddingBottom: 16 }}>
+    <Flex
+      vertical
+      style={{
+        padding: 'clamp(1.5rem, 4vw, 3.5rem) clamp(1rem, 3vw, 3rem)',
+        borderRadius: 'clamp(1rem, 3vw, 2rem)',
+        backgroundColor: token.colorSecondary,
+      }}
+    >
+      <Row
+        justify="space-evenly"
+        align="middle"
+        style={{ paddingBottom: 'clamp(1.5rem, 4vw, 3.5rem)' }}
+      >
         <StatisticCol>
           <GeneralInformationStatistic
             title={'Public Repos'}
@@ -23,7 +34,7 @@ function GeneralInformation({ user }) {
           <GeneralInformationStatistic title={'Private Repos'} value={0} />
         </StatisticCol>
       </Row>
-      <Row justify="center" gutter={[16, 16]} style={{ paddingBottom: 16 }}>
+      <Row justify="space-evenly" align="middle">
         <StatisticCol>
           <GeneralInformationStatistic
             title={'Followers'}

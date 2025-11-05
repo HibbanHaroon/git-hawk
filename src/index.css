@@ -1,4 +1,7 @@
 :root {
+  --token-color-primary: #151515;
+  --token-color-text: #949495;
+  --token-color-accent: #fbfbfb;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -11,11 +14,22 @@
   padding: 0;
 }
 
-.ant-statistic-title {
-  color: #949495 !important;
+.general-statistic .ant-statistic-content-value {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  line-height: 0;
+  color: var(--token-color-accent) !important;
+}
+
+.general-statistic .ant-statistic-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.7rem, 1.35vw, 1.35rem);
+  font-weight: 400;
+  color: var(--token-color-accent) !important;
 }
 
 ::selection {
-  background: #949495;
-  color: #000;
+  background: var(--token-color-text);
+  color: var(--token-color-primary);
 }

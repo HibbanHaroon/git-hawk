@@ -36,11 +36,7 @@ function Profile() {
         }}
       >
         <UserInformation user={user} />
-        {/* <GeneralInformation user={user} /> */}
-        {/* <p>{user.name}</p>
-      {repositories.map((repsitory) => (
-        <p key={repsitory.id}>{repsitory.name}</p>
-      ))} */}
+        <GeneralInformation user={user} />
       </Flex>
     </Flex>
   )

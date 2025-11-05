@@ -1,22 +1,20 @@
-import { Statistic, theme } from 'antd'
-
-const { useToken } = theme
+import { Statistic } from 'antd'
 
 function GeneralInformationStatistic({ title, value }) {
-  const { token } = useToken()
+  // Appending 0 infront of the value for single digits
+  let transformedValue = value
+  if (value >= 0 && value < 10) {
+    transformedValue = '0' + value
+  }
+
   return (
     <Statistic
+      className="general-statistic"
       title={title}
-      value={value}
-      valueStyle={{ color: token.colorAccent }}
-      titleStyle={{ color: token.colorText }}
+      value={transformedValue}
       style={{
         display: 'flex',
         flexDirection: 'column-reverse',
-        backgroundColor: token.colorSecondary,
-        paddingInline: 24,
-        paddingBlock: 16,
-        borderRadius: 12,
       }}
     />
   )

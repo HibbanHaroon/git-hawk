@@ -58,46 +58,50 @@ function UserInformation({ user }) {
               alignItems: 'center',
             }}
           >
-            <Space style={{ gap: 16 }}>
-              <img
-                src={ASSETS.MAP_PIN_ICON}
-                alt="Map Pin Icon"
-                style={{
-                  width: 'clamp(16px, 2vw, 24px)',
-                  height: 'auto',
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: 'Montserrat',
-                  fontSize: 'clamp(0.7rem, 1.35vw, 1.35rem)',
-                  fontWeight: 400,
-                  color: token.colorAccent,
-                }}
-              >
-                {user.location}
-              </Text>
-            </Space>
-            <Space style={{ gap: 16 }}>
-              <img
-                src={ASSETS.COMPANY_ICON}
-                alt="Company Icon"
-                style={{
-                  width: 'clamp(24px, 3vw, 35px)',
-                  height: 'auto',
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: 'Montserrat',
-                  fontSize: 'clamp(0.7rem, 1.35vw, 1.35rem)',
-                  fontWeight: 400,
-                  color: token.colorAccent,
-                }}
-              >
-                {user.company}
-              </Text>
-            </Space>
+            {user.location && (
+              <Space style={{ gap: 16 }}>
+                <img
+                  src={ASSETS.MAP_PIN_ICON}
+                  alt="Map Pin Icon"
+                  style={{
+                    width: 'clamp(16px, 2vw, 24px)',
+                    height: 'auto',
+                  }}
+                />
+                <Text
+                  style={{
+                    fontFamily: 'Montserrat',
+                    fontSize: 'clamp(0.7rem, 1.35vw, 1.35rem)',
+                    fontWeight: 400,
+                    color: token.colorAccent,
+                  }}
+                >
+                  {user.location}
+                </Text>
+              </Space>
+            )}
+            {user.company && (
+              <Space style={{ gap: 16 }}>
+                <img
+                  src={ASSETS.COMPANY_ICON}
+                  alt="Company Icon"
+                  style={{
+                    width: 'clamp(24px, 3vw, 35px)',
+                    height: 'auto',
+                  }}
+                />
+                <Text
+                  style={{
+                    fontFamily: 'Montserrat',
+                    fontSize: 'clamp(0.7rem, 1.35vw, 1.35rem)',
+                    fontWeight: 400,
+                    color: token.colorAccent,
+                  }}
+                >
+                  {user.company}
+                </Text>
+              </Space>
+            )}
           </Flex>
         </Flex>
       </Flex>
