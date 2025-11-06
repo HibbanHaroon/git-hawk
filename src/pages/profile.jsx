@@ -1,7 +1,12 @@
 import { Flex, Grid, theme } from 'antd'
 import { useParams } from 'react-router-dom'
 import { useProfileData } from '../hooks'
-import { GeneralInformation, RandomQuote, UserInformation } from '../components'
+import {
+  CreationTime,
+  GeneralInformation,
+  RandomQuote,
+  UserInformation,
+} from '../components'
 
 const { useBreakpoint } = Grid
 const { useToken } = theme
@@ -38,6 +43,7 @@ function Profile() {
         <UserInformation user={user} />
         <GeneralInformation user={user} />
         <RandomQuote quote={quote} />
+        <CreationTime user={user} />
       </Flex>
     </Flex>
   )

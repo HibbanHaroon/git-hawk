@@ -10,6 +10,7 @@ class UserModel {
     this.followers = data.followers || 0
     this.following = data.following || 0
     this.reposUrl = data.repos_url || null
+    this.createdAt = data.created_at || null
   }
 
   toString() {
@@ -24,6 +25,7 @@ class UserModel {
       followers: ${this.followers}
       following: ${this.following}
       reposUrl: ${this.reposUrl}
+      createdAt: ${this.createdAt}
     `
     return str
   }
