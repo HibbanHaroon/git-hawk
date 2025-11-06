@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useProfileData } from '../hooks'
 import {
   CreationTime,
+  FollowingFact,
   GeneralInformation,
   RandomQuote,
   UserInformation,
@@ -44,6 +45,7 @@ function Profile() {
         <GeneralInformation user={user} />
         <RandomQuote quote={quote} />
         <CreationTime user={user} />
+        <FollowingFact user={user} />
       </Flex>
     </Flex>
   )
