@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import { getRepositoryList, getUser } from '../../api'
+import { getQuote, getRepositoryList, getUser } from '../../api'
 
 function useProfileData(username) {
   const [user, setUser] = useState(null)
   const [repositories, setRepositories] = useState(null)
+  const [quote, setQuote] = useState(null)
 
   useEffect(() => {
     async function fetchData() {
@@ -12,6 +13,9 @@ function useProfileData(username) {
 
       const repositoriesData = await getRepositoryList(userData.reposUrl)
       setRepositories(repositoriesData)
+
+      const quoteData = await getQuote()
+      setQuote(quoteData)
     }
 
     fetchData()
@@ -20,6 +24,7 @@ function useProfileData(username) {
   return {
     user,
     repositories,
+    quote,
   }
 }
 

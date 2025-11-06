@@ -1,7 +1,7 @@
 import { Flex, Grid, theme } from 'antd'
 import { useParams } from 'react-router-dom'
 import { useProfileData } from '../hooks'
-import { GeneralInformation, UserInformation } from '../components'
+import { GeneralInformation, RandomQuote, UserInformation } from '../components'
 
 const { useBreakpoint } = Grid
 const { useToken } = theme
@@ -9,11 +9,11 @@ const { useToken } = theme
 function Profile() {
   const { token } = useToken()
   const { username } = useParams()
-  const { user, repositories } = useProfileData(username)
+  const { user, repositories, quote } = useProfileData(username)
   const screens = useBreakpoint()
   const isXSDevice = !screens.sm
 
-  if (user == null || repositories == null) {
+  if (user == null || repositories == null || quote == null) {
     return <>Loading...</>
   }
 
@@ -37,6 +37,7 @@ function Profile() {
       >
         <UserInformation user={user} />
         <GeneralInformation user={user} />
+        <RandomQuote quote={quote} />
       </Flex>
     </Flex>
   )
