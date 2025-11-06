@@ -6,6 +6,7 @@ import {
   FollowingFact,
   GeneralInformation,
   RandomQuote,
+  TotalStars,
   UserInformation,
 } from '../components'
 
@@ -46,6 +47,7 @@ function Profile() {
         <RandomQuote quote={quote} />
         <CreationTime user={user} />
         <FollowingFact user={user} />
+        <TotalStars repositories={repositories} />
       </Flex>
     </Flex>
   )

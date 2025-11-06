@@ -31,7 +31,7 @@ function FollowingFact({ user }) {
       <Text
         style={{
           fontFamily: 'Playfair Display',
-          fontSize: 'clamp(1.2rem, 2.1vw, 2.1rem)',
+          fontSize: 'clamp(1rem, 1.5vw, 1.5rem)',
           fontStyle: 'italic',
           fontWeight: 700,
           color: token.colorAccent,
