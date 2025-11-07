@@ -27,3 +27,32 @@ export function transformTimeToWords(timeMs) {
 
   return parts.join(' ')
 }
+
+export function getMonth(timeMs) {
+  const month = new Date(timeMs).getMonth() + 1 // months are 0-indexed
+  return month.toString().padStart(2, '0')
+}
+
+export function getDay(timeMs) {
+  const day = new Date(timeMs).getDate()
+  return day.toString().padStart(2, '0')
+}
+
+export function transformMonthToText(month) {
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+  const index = parseInt(month, 10) - 1
+  return monthNames[index] || ''
+}

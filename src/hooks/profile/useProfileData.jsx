@@ -12,13 +12,14 @@ function useProfileData(username) {
       const userData = await getUser(username)
       setUser(userData)
 
-      const repositoriesData = await getRepositoryList(userData.reposUrl)
+      const [repositoriesData, quoteData, jokeData] = await Promise.all([
+        getRepositoryList(userData.reposUrl),
+        getQuote(),
+        getDadJoke(),
+      ])
+
       setRepositories(repositoriesData)
-
-      const quoteData = await getQuote()
       setQuote(quoteData)
-
-      const jokeData = await getDadJoke()
       setJoke(jokeData)
     }
 

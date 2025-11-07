@@ -1,6 +1,6 @@
 import { Flex, Grid, theme } from 'antd'
 import { useParams } from 'react-router-dom'
-import { useProfileData } from '../hooks'
+import { useProfileData, useHistoricalEvent } from '../hooks'
 import {
   CreationTime,
   FollowingFact,
@@ -9,6 +9,7 @@ import {
   TotalStars,
   UserInformation,
   DadJoke,
+  OnThisDay,
 } from '../components'
 
 const { useBreakpoint } = Grid
@@ -18,10 +19,17 @@ function Profile() {
   const { token } = useToken()
   const { username } = useParams()
   const { user, repositories, quote, joke } = useProfileData(username)
+  const { event } = useHistoricalEvent(user?.createdAt)
   const screens = useBreakpoint()
   const isXSDevice = !screens.sm
 
-  if (user == null || repositories == null || quote == null || joke == null) {
+  if (
+    user == null ||
+    repositories == null ||
+    quote == null ||
+    joke == null ||
+    (user && event == null)
+  ) {
     return <>Loading...</>
   }
 
@@ -50,6 +58,7 @@ function Profile() {
         <FollowingFact user={user} />
         <TotalStars repositories={repositories} />
         <DadJoke joke={joke} />
+        <OnThisDay event={event} />
       </Flex>
     </Flex>
   )
