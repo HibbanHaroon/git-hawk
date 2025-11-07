@@ -5,7 +5,6 @@ const { Text } = Typography
 
 function DadJoke({ joke }) {
   const { token } = useToken()
-  console.log(joke)
 
   return (
     <Flex

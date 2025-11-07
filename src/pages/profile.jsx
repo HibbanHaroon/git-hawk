@@ -10,6 +10,7 @@ import {
   UserInformation,
   DadJoke,
   OnThisDay,
+  TopRepository,
 } from '../components'
 
 const { useBreakpoint } = Grid
@@ -59,6 +60,7 @@ function Profile() {
         <TotalStars repositories={repositories} />
         <DadJoke joke={joke} />
         <OnThisDay event={event} />
+        <TopRepository repositories={repositories} />
       </Flex>
     </Flex>
   )

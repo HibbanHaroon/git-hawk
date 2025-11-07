@@ -4,9 +4,10 @@ class Repository {
     this.name = data.name || null
     this.description = data.description || null
     this.url = data.html_url || null
-    this.type = data.private == 'false' ? 'Public' : 'Private'
+    this.type = data.visibility == 'public' ? 'Public' : 'Private'
     this.stars = data.stargazers_count || 0
-    this.language = data.langauge || null
+    this.language = data.language || null
+    this.size = data.size || 0
   }
 
   toString() {
@@ -18,6 +19,7 @@ class Repository {
       type: ${this.type}
       stars: ${this.stars}
       language: ${this.language}
+      size: ${this.size}
     `
     return str
   }

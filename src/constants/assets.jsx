@@ -9,4 +9,6 @@ export const ASSETS = {
   OPEN_QUOTE_ICON: `${_ASSETS}${_ICONS}/open-quote-icon.svg`,
   CLOSED_QUOTE_ICON: `${_ASSETS}${_ICONS}/closed-quote-icon.svg`,
   STAR_ICON: `${_ASSETS}${_ICONS}/star-icon.svg`,
+  REPO_ICON: `${_ASSETS}${_ICONS}/repo-icon.svg`,
+  LANGUAGE_ICON: `${_ASSETS}${_ICONS}/language-icon.svg`,
 }
