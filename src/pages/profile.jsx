@@ -8,6 +8,7 @@ import {
   RandomQuote,
   TotalStars,
   UserInformation,
+  DadJoke,
 } from '../components'
 
 const { useBreakpoint } = Grid
@@ -16,11 +17,11 @@ const { useToken } = theme
 function Profile() {
   const { token } = useToken()
   const { username } = useParams()
-  const { user, repositories, quote } = useProfileData(username)
+  const { user, repositories, quote, joke } = useProfileData(username)
   const screens = useBreakpoint()
   const isXSDevice = !screens.sm
 
-  if (user == null || repositories == null || quote == null) {
+  if (user == null || repositories == null || quote == null || joke == null) {
     return <>Loading...</>
   }
 
@@ -48,6 +49,7 @@ function Profile() {
         <CreationTime user={user} />
         <FollowingFact user={user} />
         <TotalStars repositories={repositories} />
+        <DadJoke joke={joke} />
       </Flex>
     </Flex>
   )

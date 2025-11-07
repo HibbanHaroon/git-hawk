@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
-import { getQuote, getRepositoryList, getUser } from '../../api'
+import { getDadJoke, getQuote, getRepositoryList, getUser } from '../../api'
 
 function useProfileData(username) {
   const [user, setUser] = useState(null)
   const [repositories, setRepositories] = useState(null)
   const [quote, setQuote] = useState(null)
+  const [joke, setJoke] = useState(null)
 
   useEffect(() => {
     async function fetchData() {
@@ -16,6 +17,9 @@ function useProfileData(username) {
 
       const quoteData = await getQuote()
       setQuote(quoteData)
+
+      const jokeData = await getDadJoke()
+      setJoke(jokeData)
     }
 
     fetchData()
@@ -25,6 +29,7 @@ function useProfileData(username) {
     user,
     repositories,
     quote,
+    joke,
   }
 }
 
