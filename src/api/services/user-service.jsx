@@ -3,7 +3,14 @@ import UserModel from '../models/user'
 
 export async function getUser(username) {
   try {
-    const response = await fetch(`${ENDPOINTS.GET_USERS}/${username}`)
+    const GITHUB_HEADERS = {
+      Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
+      Accept: 'application/vnd.github+json',
+    }
+
+    const response = await fetch(`${ENDPOINTS.GET_USERS}/${username}`, {
+      headers: GITHUB_HEADERS,
+    })
 
     if (!response.ok) {
       throw new Error('Failed to fetch')

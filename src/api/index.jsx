@@ -7,7 +7,10 @@ export { default as JokeModel } from './models/joke'
 export { default as EventModel } from './models/event'
 
 export { getUser } from './services/user-service'
-export { getRepositoryList } from './services/repository-service'
+export {
+  getRepositoryList,
+  getRepoLanguages,
+} from './services/repository-service'
 export { getQuote } from './services/quote-service'
 export { getDadJoke } from './services/joke-service'
 export { getHistoricalEvent } from './services/event-service'

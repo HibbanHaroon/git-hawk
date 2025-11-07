@@ -8,6 +8,7 @@ class Repository {
     this.stars = data.stargazers_count || 0
     this.language = data.language || null
     this.size = data.size || 0
+    this.languagesUrl = data.languages_url || null
   }
 
   toString() {
@@ -20,6 +21,7 @@ class Repository {
       stars: ${this.stars}
       language: ${this.language}
       size: ${this.size}
+      languages: ${this.languagesUrl}
     `
     return str
   }

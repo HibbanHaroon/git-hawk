@@ -11,6 +11,7 @@ import {
   DadJoke,
   OnThisDay,
   TopRepository,
+  TopLanguages,
 } from '../components'
 
 const { useBreakpoint } = Grid
@@ -19,17 +20,20 @@ const { useToken } = theme
 function Profile() {
   const { token } = useToken()
   const { username } = useParams()
-  const { user, repositories, quote, joke } = useProfileData(username)
+  const { user, repositories, quote, joke, topRepository, topLanguages } =
+    useProfileData(username)
   const { event } = useHistoricalEvent(user?.createdAt)
   const screens = useBreakpoint()
   const isXSDevice = !screens.sm
 
   if (
-    user == null ||
-    repositories == null ||
-    quote == null ||
-    joke == null ||
-    (user && event == null)
+    !user ||
+    !repositories ||
+    !quote ||
+    !joke ||
+    (user && event == null) ||
+    (repositories && !topRepository) ||
+    (repositories && !topLanguages)
   ) {
     return <>Loading...</>
   }
@@ -60,7 +64,8 @@ function Profile() {
         <TotalStars repositories={repositories} />
         <DadJoke joke={joke} />
         <OnThisDay event={event} />
-        <TopRepository repositories={repositories} />
+        <TopRepository repository={topRepository} />
+        <TopLanguages languages={topLanguages} />
       </Flex>
     </Flex>
   )
