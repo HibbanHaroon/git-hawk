@@ -57,6 +57,7 @@ function TopLanguages({ languages }) {
                       style={{
                         width: 'clamp(48px, 6vw, 64px)',
                         height: 'auto',
+                        filter: 'grayscale(100%)',
                       }}
                     />
                     <Text
