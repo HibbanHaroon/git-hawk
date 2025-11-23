@@ -11,4 +11,5 @@ export const ASSETS = {
   STAR_ICON: `${_ASSETS}${_ICONS}/star-icon.svg`,
   REPO_ICON: `${_ASSETS}${_ICONS}/repo-icon.svg`,
   LANGUAGE_ICON: `${_ASSETS}${_ICONS}/language-icon.svg`,
+  DEFAULT_LANGUAGE_ICON: `${_ASSETS}${_ICONS}/default-language-icon.svg`,
 }

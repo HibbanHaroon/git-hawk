@@ -48,7 +48,6 @@ function Profile() {
 
   // Array of all card components in order
   // Only create this when data is loaded to avoid undefined props
-  // Use useMemo to stabilize the array reference
   const cards = useMemo(
     () =>
       isDataLoaded
@@ -87,13 +86,11 @@ function Profile() {
   }
 
   // Use GSAP scroll animation hook
-  // Card height is estimated based on typical card content
-  // This can be adjusted if cards have significantly different heights
   // Only call hook when data is loaded and cards array is ready
-  // Pass cards length to ensure hook re-runs when cards change
+  // Passing cards length to ensure hook re-runs when cards change
   useCardScrollAnimation(scrollContainerRef, cardsContainerRef, cardRefs, {
     cardHeight: 400,
-    cardsCount: cards.length, // Add cards count as dependency
+    cardsCount: cards.length,
   })
 
   if (!isDataLoaded) {

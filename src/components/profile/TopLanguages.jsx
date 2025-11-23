@@ -1,4 +1,5 @@
 import { Flex, Row, Space, Typography, theme } from 'antd'
+import { ASSETS } from '../../constants'
 
 const { Text } = Typography
 const { useToken } = theme
@@ -51,7 +52,7 @@ function TopLanguages({ languages }) {
                       src={
                         icon !== 'default'
                           ? `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-original.svg`
-                          : `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/zustand/zustand-original.svg`
+                          : ASSETS.DEFAULT_LANGUAGE_ICON
                       }
                       alt={`${lang} Icon`}
                       style={{
