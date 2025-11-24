@@ -1,19 +1,10 @@
 import RepositoryModel from '../models/respository'
-
-const GITHUB_HEADERS = {
-  Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
-  Accept: 'application/vnd.github+json',
-}
+import { githubRequest, parseJSON } from '../client'
 
 export async function getRepositoryList(url) {
   try {
-    const response = await fetch(url, { headers: GITHUB_HEADERS })
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch repository data')
-    }
-
-    const data = await response.json()
+    const response = await githubRequest(url)
+    const data = await parseJSON(response)
     const repositories = data.map(
       (repository) => new RepositoryModel(repository)
     )
@@ -26,13 +17,8 @@ export async function getRepositoryList(url) {
 
 export async function getRepoLanguages(url) {
   try {
-    const response = await fetch(url, { headers: GITHUB_HEADERS })
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch languages')
-    }
-
-    const data = await response.json()
+    const response = await githubRequest(url)
+    const data = await parseJSON(response)
     return data
   } catch (error) {
     console.log('Error: ' + error)

@@ -36,48 +36,52 @@ function Profile() {
   const cardsContainerRef = useRef(null)
   const cardRefs = useRef([])
 
-  // Check if all data is loaded
-  const isDataLoaded =
-    user &&
-    repositories &&
-    quote &&
-    joke &&
-    (user ? event != null : true) && // Use != null to check for both null and undefined
-    (repositories ? topRepository != null : true) &&
-    (repositories ? topLanguages != null : true)
+  // Build cards array conditionally - only include cards when their data is available
+  // This allows cards to appear progressively as data loads
+  const cards = useMemo(() => {
+    const cardList = []
 
-  // Array of all card components in order
-  // Only create this when data is loaded to avoid undefined props
-  const cards = useMemo(
-    () =>
-      isDataLoaded
-        ? [
-            { component: UserInformation, props: { user } },
-            { component: GeneralInformation, props: { user } },
-            { component: RandomQuote, props: { quote } },
-            { component: CreationTime, props: { user } },
-            { component: FollowingFact, props: { user } },
-            { component: TotalStars, props: { repositories } },
-            { component: DadJoke, props: { joke } },
-            ...(event ? [{ component: OnThisDay, props: { event } }] : []),
-            {
-              component: TopRepository,
-              props: { repository: topRepository },
-            },
-            { component: TopLanguages, props: { languages: topLanguages } },
-          ]
-        : [],
-    [
-      isDataLoaded,
-      user,
-      quote,
-      repositories,
-      joke,
-      event,
-      topRepository,
-      topLanguages,
-    ]
-  )
+    // Critical cards - render if user exists
+    if (user) {
+      cardList.push({ component: UserInformation, props: { user } })
+      cardList.push({ component: GeneralInformation, props: { user } })
+      cardList.push({ component: CreationTime, props: { user } })
+      cardList.push({ component: FollowingFact, props: { user } })
+    }
+
+    // Lazy cards - render only when their data is available
+    if (quote) {
+      cardList.push({ component: RandomQuote, props: { quote } })
+    }
+
+    if (repositories) {
+      cardList.push({ component: TotalStars, props: { repositories } })
+    }
+
+    if (joke) {
+      cardList.push({ component: DadJoke, props: { joke } })
+    }
+
+    if (event) {
+      cardList.push({ component: OnThisDay, props: { event } })
+    }
+
+    if (topRepository) {
+      cardList.push({
+        component: TopRepository,
+        props: { repository: topRepository },
+      })
+    }
+
+    if (topLanguages) {
+      cardList.push({
+        component: TopLanguages,
+        props: { languages: topLanguages },
+      })
+    }
+
+    return cardList
+  }, [user, quote, repositories, joke, event, topRepository, topLanguages])
 
   // Initialize card refs array to match number of cards
   // This ensures refs array is always the correct length
@@ -86,14 +90,17 @@ function Profile() {
   }
 
   // Use GSAP scroll animation hook
-  // Only call hook when data is loaded and cards array is ready
+  // Hook will re-run when cards array changes (as cards are added progressively)
   // Passing cards length to ensure hook re-runs when cards change
   useCardScrollAnimation(scrollContainerRef, cardsContainerRef, cardRefs, {
     cardHeight: 400,
     cardsCount: cards.length,
   })
 
-  if (!isDataLoaded) {
+  // Show loading only while critical data (user) is being fetched
+  // Once user data is available, we can start rendering cards
+  // Other cards will appear as their data loads
+  if (!user) {
     return <>Loading...</>
   }
 

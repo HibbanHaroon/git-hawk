@@ -1,25 +1,17 @@
 import { getRandomNumber } from '../../utils'
 import { ENDPOINTS } from '../endpoints'
 import EventModel from '../models/event'
+import { ninjaRequest, parseJSON } from '../client'
 
 export async function getHistoricalEvent(month, day) {
   try {
-    const response = await fetch(
+    const response = await ninjaRequest(
       `${ENDPOINTS.GET_HISTORICAL_EVENT}?month=${month}&day=${day}`,
       {
         method: 'GET',
-        headers: {
-          'X-Api-Key': import.meta.env.VITE_NINJA_API_URL,
-          'Content-Type': 'application/json',
-        },
       }
     )
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch')
-    }
-
-    const data = await response.json()
+    const data = await parseJSON(response)
     const event = new EventModel(data[getRandomNumber(0, data.length)])
     return event
   } catch (error) {
