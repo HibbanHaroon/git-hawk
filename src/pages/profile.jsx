@@ -17,6 +17,7 @@ import {
   OnThisDay,
   TopRepository,
   TopLanguages,
+  Loader,
 } from '../components'
 
 const { useBreakpoint } = Grid
@@ -101,7 +102,7 @@ function Profile() {
   // Once user data is available, we can start rendering cards
   // Other cards will appear as their data loads
   if (!user) {
-    return <>Loading...</>
+    return <Loader />
   }
 
   return (
