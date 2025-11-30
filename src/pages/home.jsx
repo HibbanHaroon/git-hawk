@@ -1,4 +1,6 @@
+import { useRef } from 'react'
 import { Flex, Typography, Input, theme } from 'antd'
+import { useTextReveal } from '../hooks'
 import { ASSETS } from '../constants'
 import { SearchTextfield, SemiCirclesContainer } from '../components'
 
@@ -8,8 +10,21 @@ const { useToken } = theme
 function Home() {
   const { token } = useToken()
 
+  const githubIconRef = useRef(null)
+  const titleRef = useRef(null)
+  const descriptionRef = useRef(null)
+  const textfieldRef = useRef(null)
+
+  const { containerRef } = useTextReveal([
+    githubIconRef,
+    titleRef,
+    descriptionRef,
+    textfieldRef,
+  ])
+
   return (
     <Flex
+      ref={containerRef}
       justify="center"
       align="center"
       vertical
@@ -22,8 +37,9 @@ function Home() {
       }}
     >
       <Flex justify="center" align="center" vertical style={{ zIndex: '10' }}>
-        <img src={ASSETS.GITHUB_ICON} alt="Github Icon" />
+        <img ref={githubIconRef} src={ASSETS.GITHUB_ICON} alt="Github Icon" />
         <Text
+          ref={titleRef}
           style={{
             fontFamily: 'Playfair Display',
             fontSize: 'clamp(2rem, 5vw, 5rem)',
@@ -35,6 +51,7 @@ function Home() {
           Hawk your Git
         </Text>
         <Text
+          ref={descriptionRef}
           style={{
             fontFamily: 'Montserrat',
             fontSize: 'clamp(0.7rem, 1.2vw, 1.2rem)',
@@ -46,7 +63,9 @@ function Home() {
         >
           A minimalist platform where you can look for your GitHub stats.
         </Text>
-        <SearchTextfield />
+        <div ref={textfieldRef}>
+          <SearchTextfield />
+        </div>
       </Flex>
       <SemiCirclesContainer />
     </Flex>

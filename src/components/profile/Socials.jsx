@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { theme } from 'antd'
+import { useTextReveal } from '../../hooks'
 import { ASSETS } from '../../constants'
 
 const { useToken } = theme
@@ -10,6 +11,8 @@ function Socials() {
   const [isGithubHovered, setIsGithubHovered] = useState(false)
   const [isLetterboxdHovered, setIsLetterboxdHovered] = useState(false)
   const [isInstagramHovered, setIsInstagramHovered] = useState(false)
+
+  const linkRefs = useRef([])
 
   const socialLinks = [
     {
@@ -50,8 +53,16 @@ function Socials() {
     },
   ]
 
+  const { containerRef } = useTextReveal(linkRefs, {
+    isMutableRef: true,
+    duration: 0.5,
+    overlap: 0.1,
+    expectedCount: socialLinks.length, // Waiting for all 4 links to be ready
+  })
+
   return (
     <div
+      ref={containerRef}
       style={{
         position: 'fixed',
         bottom: '20px',
@@ -63,9 +74,12 @@ function Socials() {
         zIndex: 1000,
       }}
     >
-      {socialLinks.map((link) => (
+      {socialLinks.map((link, index) => (
         <a
           key={link.name}
+          ref={(el) => {
+            linkRefs.current[index] = el
+          }}
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"

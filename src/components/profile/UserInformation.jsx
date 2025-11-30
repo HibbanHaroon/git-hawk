@@ -1,4 +1,6 @@
+import { useRef } from 'react'
 import { Flex, Avatar, Typography, Space, Grid, theme } from 'antd'
+import { useTextReveal } from '../../hooks'
 import { ASSETS } from '../../constants'
 
 const { Text } = Typography
@@ -10,8 +12,21 @@ function UserInformation({ user }) {
   const screens = useBreakpoint()
   const isMobile = !screens.md
 
+  const avatarRef = useRef(null)
+  const nameRef = useRef(null)
+  const bioRef = useRef(null)
+  const locationCompanyRef = useRef(null)
+
+  const { containerRef } = useTextReveal([
+    avatarRef,
+    nameRef,
+    bioRef,
+    locationCompanyRef,
+  ])
+
   return (
     <Flex
+      ref={containerRef}
       vertical
       style={{
         padding: 'clamp(1.5rem, 4vw, 3.5rem) clamp(1rem, 3vw, 3rem)',
@@ -20,7 +35,7 @@ function UserInformation({ user }) {
       }}
     >
       <Flex justify="center" gap={isMobile ? 'clamp(1rem, 3vw, 3rem)' : 32}>
-        <Flex vertical justify="center">
+        <Flex vertical justify="center" ref={avatarRef}>
           <Avatar
             size={{ xs: 72, sm: 72, md: 120, lg: 120, xl: 180, xxl: 180 }}
             src={user.imageUrl}
@@ -30,6 +45,7 @@ function UserInformation({ user }) {
         <Flex vertical gap={24}>
           <Flex vertical gap={4}>
             <Text
+              ref={nameRef}
               style={{
                 fontFamily: 'Playfair Display',
                 fontSize: 'clamp(1.2rem, 2.1vw, 2.1rem)',
@@ -40,6 +56,7 @@ function UserInformation({ user }) {
               {user.name}
             </Text>
             <Text
+              ref={bioRef}
               style={{
                 fontFamily: 'Montserrat',
                 fontSize: 'clamp(0.7rem, 1.35vw, 1.35rem)',
@@ -52,6 +69,7 @@ function UserInformation({ user }) {
             </Text>
           </Flex>
           <Flex
+            ref={locationCompanyRef}
             style={{
               display: 'flex',
               justifyContent: 'space-between',

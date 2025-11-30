@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useState, forwardRef } from 'react'
 
-function SemiCircle({ width, height, backgroundColor, zIndex, children }) {
+const SemiCircle = forwardRef(function SemiCircle(
+  { width, height, backgroundColor, zIndex, children },
+  ref
+) {
   const [isHovered, setIsHovered] = useState(false)
 
   let timeoutId = null
@@ -18,6 +21,7 @@ function SemiCircle({ width, height, backgroundColor, zIndex, children }) {
 
   return (
     <div
+      ref={ref}
       style={{
         width: width,
         height: height,
@@ -35,6 +39,8 @@ function SemiCircle({ width, height, backgroundColor, zIndex, children }) {
       {children}
     </div>
   )
-}
+})
+
+SemiCircle.displayName = 'SemiCircle'
 
 export default SemiCircle

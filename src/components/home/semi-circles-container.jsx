@@ -1,6 +1,10 @@
+import { useRef } from 'react'
+import { useTextReveal } from '../../hooks'
 import { SemiCircle } from '../../components'
 
 function SemiCirclesContainer() {
+  const circleRefs = useRef([])
+
   const semiCircles = [
     { width: '120vw', height: '120vw', backgroundColor: '#232323', zIndex: 1 },
     { width: '110vw', height: '110vw', backgroundColor: '#3A3A3A', zIndex: 2 },
@@ -11,8 +15,16 @@ function SemiCirclesContainer() {
     { width: '60vw', height: '60vw', backgroundColor: '#FBFBFB', zIndex: 7 },
   ]
 
+  const { containerRef } = useTextReveal(circleRefs, {
+    isMutableRef: true,
+    duration: 0.325,
+    overlap: 0.2,
+    expectedCount: semiCircles.length,
+  })
+
   return (
     <div
+      ref={containerRef}
       style={{
         display: 'flex',
         justifyContent: 'center',
@@ -25,7 +37,13 @@ function SemiCirclesContainer() {
       }}
     >
       {semiCircles.map((circle, index) => (
-        <SemiCircle key={index} {...circle} />
+        <SemiCircle
+          key={index}
+          ref={(el) => {
+            circleRefs.current[index] = el
+          }}
+          {...circle}
+        />
       ))}
     </div>
   )
