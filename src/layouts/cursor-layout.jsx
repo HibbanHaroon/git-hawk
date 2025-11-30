@@ -1,45 +1,66 @@
-import { Cursor } from '../components'
+import { useEffect, useRef } from 'react'
+import '../components/global/styles/cursor.css'
 
 function CursorLayout({ children }) {
-  const handleMouseMove = (e) => {
-    const cursor = document.querySelector('.cursor')
-    if (cursor) {
-      const cursorSize = 32
-      const maxX = window.innerWidth - cursorSize / 2
-      const maxY = window.innerHeight - cursorSize / 2
-      const x = Math.min(e.pageX, maxX)
-      const y = Math.min(e.pageY, maxY)
+  const cursorRef = useRef(null)
 
-      cursor.style.width = `${cursorSize}px`
-      cursor.style.height = `${cursorSize}px`
+  useEffect(() => {
+    const cursor = cursorRef.current || document.querySelector('.cursor')
+    if (!cursor) return
 
-      cursor.style.left = `${x}px`
-      cursor.style.top = `${y}px`
+    cursorRef.current = cursor
+    const cursorSize = 32
+
+    cursor.style.width = `${cursorSize}px`
+    cursor.style.height = `${cursorSize}px`
+    cursor.style.opacity = '0'
+
+    const handleMouseMove = (e) => {
+      if (!cursor) return
+
+      // Check if mouse is over textfield
+      const element = document.elementFromPoint(e.clientX, e.clientY)
+      const isOverTextfield = element?.closest('.textfield') !== null
+
+      // Using clientX/clientY for viewport coordinates
+      cursor.style.left = `${e.clientX}px`
+      cursor.style.top = `${e.clientY}px`
+      cursor.style.opacity = isOverTextfield ? '0' : '1'
     }
-  }
 
-  const handleMouseLeave = () => {
-    const cursor = document.querySelector('.cursor')
-    if (cursor) {
-      cursor.style.display = 'none'
-    }
-  }
+    document.addEventListener('mousemove', handleMouseMove, { passive: true })
 
-  const handleMouseEnter = () => {
-    const cursor = document.querySelector('.cursor')
-    if (cursor) {
-      cursor.style.display = ''
+    // Also handle focus/blur for textfield
+    const attachTextfieldListeners = () => {
+      const textfield = document.querySelector('.textfield')
+      if (textfield) {
+        const handleFocus = () => {
+          if (cursor) cursor.style.opacity = '0'
+        }
+        const handleBlur = () => {
+          if (cursor) cursor.style.opacity = '1'
+        }
+        textfield.addEventListener('focus', handleFocus)
+        textfield.addEventListener('blur', handleBlur)
+      }
     }
-  }
+
+    // Attach immediately and with delays to catch textfield that loads later
+    attachTextfieldListeners()
+    const timeout1 = setTimeout(attachTextfieldListeners, 100)
+    const timeout2 = setTimeout(attachTextfieldListeners, 500)
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+      clearTimeout(timeout1)
+      clearTimeout(timeout2)
+    }
+  }, [])
 
   return (
-    <div
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onMouseEnter={handleMouseEnter}
-    >
+    <div>
       {children}
-      <Cursor />
+      <div ref={cursorRef} className="cursor"></div>
     </div>
   )
 }

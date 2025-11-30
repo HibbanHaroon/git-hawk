@@ -1,7 +1,10 @@
+import { forwardRef } from 'react'
 import './styles/cursor.css'
 
-function Cursor() {
-  return <div className="cursor"></div>
-}
+const Cursor = forwardRef((props, ref) => {
+  return <div ref={ref} className="cursor"></div>
+})
+
+Cursor.displayName = 'Cursor'
 
 export default Cursor
