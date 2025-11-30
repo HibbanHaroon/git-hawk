@@ -18,6 +18,7 @@ import {
   TopRepository,
   TopLanguages,
   Loader,
+  Socials,
 } from '../components'
 
 const { useBreakpoint } = Grid
@@ -163,6 +164,7 @@ function Profile() {
           })}
         </div>
       </div>
+      <Socials />
     </Flex>
   )
 }

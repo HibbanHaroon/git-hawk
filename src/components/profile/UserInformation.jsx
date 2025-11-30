@@ -96,6 +96,7 @@ function UserInformation({ user }) {
                     fontSize: 'clamp(0.7rem, 1.35vw, 1.35rem)',
                     fontWeight: 400,
                     color: token.colorAccent,
+                    whiteSpace: 'nowrap',
                   }}
                 >
                   {user.company}

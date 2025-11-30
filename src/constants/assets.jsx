@@ -12,4 +12,7 @@ export const ASSETS = {
   REPO_ICON: `${_ASSETS}${_ICONS}/repo-icon.svg`,
   LANGUAGE_ICON: `${_ASSETS}${_ICONS}/language-icon.svg`,
   DEFAULT_LANGUAGE_ICON: `${_ASSETS}${_ICONS}/default-language-icon.svg`,
+  LINKEDIN_ICON: `${_ASSETS}${_ICONS}/linkedin-icon.svg`,
+  LETTERBOXD_ICON: `${_ASSETS}${_ICONS}/letterboxd-icon.svg`,
+  INSTAGRAM_ICON: `${_ASSETS}${_ICONS}/instagram-icon.svg`,
 }
