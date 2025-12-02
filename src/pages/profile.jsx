@@ -1,6 +1,6 @@
 import { Flex, Grid, theme } from 'antd'
-import { useParams } from 'react-router-dom'
-import { useRef, useMemo } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useRef, useMemo, useEffect } from 'react'
 import {
   useProfileData,
   useHistoricalEvent,
@@ -27,11 +27,25 @@ const { useToken } = theme
 function Profile() {
   const { token } = useToken()
   const { username } = useParams()
-  const { user, repositories, quote, joke, topRepository, topLanguages } =
-    useProfileData(username)
+  const navigate = useNavigate()
+  const {
+    user,
+    repositories,
+    quote,
+    joke,
+    topRepository,
+    topLanguages,
+    error,
+  } = useProfileData(username)
   const { event } = useHistoricalEvent(user?.createdAt)
   const screens = useBreakpoint()
   const isXSDevice = !screens.sm
+
+  useEffect(() => {
+    if (error === 'USER_NOT_FOUND') {
+      navigate('/not-found', { replace: true })
+    }
+  }, [error, navigate])
 
   // Refs for GSAP scroll animation
   const scrollContainerRef = useRef(null)

@@ -7,9 +7,11 @@ export async function getUser(username) {
     const response = await githubRequest(`${ENDPOINTS.GET_USERS}/${username}`)
     const data = await parseJSON(response)
     const user = new UserModel(data)
-    return user
+    return { user, error: null }
   } catch (error) {
     console.log('Error: ' + error)
-    return null
+    // Check if error message contains 404 status
+    const is404 = error.message && error.message.includes('404')
+    return { user: null, error: is404 ? 'USER_NOT_FOUND' : 'UNKNOWN_ERROR' }
   }
 }

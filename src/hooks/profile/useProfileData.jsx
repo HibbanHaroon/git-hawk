@@ -20,6 +20,7 @@ function useProfileData(username) {
   // Critical data - needed for initial render (UserInformation and GeneralInformation cards)
   const [user, setUser] = useState(null)
   const [repositories, setRepositories] = useState(null)
+  const [error, setError] = useState(null)
 
   // Lazy data - fetched after initial render (other cards)
   const [quote, setQuote] = useState(null)
@@ -31,8 +32,16 @@ function useProfileData(username) {
   // This is the minimum data needed to show the first two cards
   useEffect(() => {
     async function fetchCriticalData() {
-      const userData = await getUser(username)
+      const { user: userData, error: userError } = await getUser(username)
+
+      if (userError) {
+        setError(userError)
+        setUser(null)
+        return
+      }
+
       setUser(userData)
+      setError(null)
 
       // Fetch repositories after user data is available
       if (userData?.reposUrl) {
@@ -82,6 +91,7 @@ function useProfileData(username) {
     joke,
     topRepository,
     topLanguages,
+    error,
   }
 }
 
