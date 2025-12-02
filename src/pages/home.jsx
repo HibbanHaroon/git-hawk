@@ -15,12 +15,10 @@ function Home() {
   const descriptionRef = useRef(null)
   const textfieldRef = useRef(null)
 
-  const { containerRef } = useTextReveal([
-    githubIconRef,
-    titleRef,
-    descriptionRef,
-    textfieldRef,
-  ])
+  const { containerRef } = useTextReveal(
+    [githubIconRef, titleRef, descriptionRef, textfieldRef],
+    { delay: 0.5 }
+  )
 
   return (
     <Flex
@@ -37,7 +35,12 @@ function Home() {
       }}
     >
       <Flex justify="center" align="center" vertical style={{ zIndex: '10' }}>
-        <img ref={githubIconRef} src={ASSETS.GITHUB_ICON} alt="Github Icon" />
+        <img
+          ref={githubIconRef}
+          src={ASSETS.GITHUB_ICON}
+          alt="Github Icon"
+          style={{ opacity: 0 }}
+        />
         <Text
           ref={titleRef}
           style={{
@@ -46,6 +49,7 @@ function Home() {
             lineHeight: 'normal',
             color: token.colorAccent,
             marginBlock: '12px 16px',
+            opacity: 0,
           }}
         >
           Hawk your Git
@@ -59,11 +63,12 @@ function Home() {
             lineHeight: 'normal',
             textAlign: 'center',
             color: token.colorAccent,
+            opacity: 0,
           }}
         >
           A minimalist platform where you can look for your GitHub stats.
         </Text>
-        <div ref={textfieldRef}>
+        <div ref={textfieldRef} style={{ opacity: 0 }}>
           <SearchTextfield />
         </div>
       </Flex>

@@ -5,13 +5,14 @@ const { useToken } = theme
 
 /**
  * The circle has a fade effect from left to right using a conic gradient mask.
+ * @param {boolean} isTransitioning - Whether the loader is fading out
  */
-function Loader() {
+function Loader({ isTransitioning = false }) {
   const { token } = useToken()
 
   return (
     <Flex
-      className="loader"
+      className={`loader ${isTransitioning ? 'loader-fade-out' : ''}`}
       align="center"
       justify="center"
       style={{

@@ -11,51 +11,38 @@ import { gsap } from 'gsap'
  * @param {number} options.overlap - Overlap between animations (default: 0.4)
  * @param {string} options.ease - GSAP easing function (default: 'power2.out')
  * @param {number} options.yOffset - Initial Y offset (default: -20)
+ * @param {number} options.delay - Delay before animation starts in seconds (default: 0)
  * @param {boolean} options.isMutableRef - Whether elementRefs is a mutable ref array (default: false)
  * @param {number} options.expectedCount - For mutable refs, specify expected count
  * @returns {Object} Object containing containerRef
  */
 function useTextReveal(elementRefs = [], options = {}) {
   const containerRef = useRef(null)
-  const hasAnimatedRef = useRef(false)
-  const lastLengthRef = useRef(0)
+  const hasAnimated = useRef(false)
   const {
     duration = 0.6,
     overlap = 0.4,
     ease = 'power2.out',
     yOffset = -20,
+    delay = 0,
     isMutableRef = false,
     expectedCount = null,
   } = options
 
   useEffect(() => {
-    if (hasAnimatedRef.current) return
-
-    const currentLength = isMutableRef
-      ? elementRefs.current?.length || 0
-      : elementRefs.length
-
-    // Only proceed if length changed (for mutable refs) or if it's the first run
-    if (isMutableRef && currentLength === lastLengthRef.current) {
-      return
-    }
-
-    lastLengthRef.current = currentLength
+    // Only animate once
+    if (hasAnimated.current) return
 
     if (!containerRef.current) return
 
-    // Get refs - handle both static array and mutable ref array
+    // Get valid refs
     let validRefs = []
     if (isMutableRef && elementRefs.current) {
-      // Mutable ref array (like linkRefs.current)
       validRefs = elementRefs.current.filter((ref) => ref && ref.nodeType === 1)
-
-      // For mutable refs, wait until all expected refs are ready
       if (expectedCount !== null && validRefs.length !== expectedCount) {
-        return // Not ready yet, wait for next length change
+        return
       }
     } else {
-      // Static ref array
       validRefs = elementRefs
         .map((ref) => (ref && ref.current ? ref.current : null))
         .filter((ref) => ref && ref.nodeType === 1)
@@ -63,10 +50,10 @@ function useTextReveal(elementRefs = [], options = {}) {
 
     if (validRefs.length === 0) return
 
-    // Mark as animated IMMEDIATELY to prevent re-running
-    hasAnimatedRef.current = true
+    // Mark as animated immediately
+    hasAnimated.current = true
 
-    // Set initial state for all elements
+    // Set initial state
     validRefs.forEach((element) => {
       gsap.set(element, {
         opacity: 0,
@@ -74,12 +61,11 @@ function useTextReveal(elementRefs = [], options = {}) {
       })
     })
 
-    // Create timeline with incremental delays
-    const tl = gsap.timeline()
+    // Create timeline
+    const tl = gsap.timeline({ delay })
 
     validRefs.forEach((element, index) => {
       if (index === 0) {
-        // First element starts immediately
         tl.to(element, {
           opacity: 1,
           y: 0,
@@ -87,7 +73,6 @@ function useTextReveal(elementRefs = [], options = {}) {
           ease,
         })
       } else {
-        // Subsequent elements overlap with previous
         tl.to(
           element,
           {
@@ -100,10 +85,7 @@ function useTextReveal(elementRefs = [], options = {}) {
         )
       }
     })
-  }, [
-    isMutableRef ? elementRefs.current?.length || 0 : elementRefs.length,
-    expectedCount,
-  ])
+  })
 
   return { containerRef }
 }
