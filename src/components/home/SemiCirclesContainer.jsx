@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useTextReveal } from '../../hooks'
-import { SemiCircle } from '../../components'
+import { SemiCircle } from '..'
 
 function SemiCirclesContainer() {
   const circleRefs = useRef([])
