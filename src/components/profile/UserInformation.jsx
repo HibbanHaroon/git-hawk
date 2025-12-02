@@ -72,7 +72,8 @@ function UserInformation({ user }) {
             ref={locationCompanyRef}
             style={{
               display: 'flex',
-              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: 16,
               alignItems: 'center',
             }}
           >
@@ -92,6 +93,7 @@ function UserInformation({ user }) {
                     fontSize: 'clamp(0.7rem, 1.35vw, 1.35rem)',
                     fontWeight: 400,
                     color: token.colorAccent,
+                    whiteSpace: 'nowrap',
                   }}
                 >
                   {user.location}
