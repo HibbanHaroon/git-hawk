@@ -1,4 +1,5 @@
 import { Flex, Typography, theme } from 'antd'
+import { BackButton } from '../components'
 
 const { Text } = Typography
 const { useToken } = theme
@@ -16,8 +17,10 @@ function NotFound404() {
         height: '100vh',
         backgroundColor: token.colorPrimary,
         gap: '6rem',
+        position: 'relative',
       }}
     >
+      <BackButton />
       <Text
         style={{
           fontFamily: 'Playfair Display',

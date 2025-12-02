@@ -15,4 +15,7 @@ export const ASSETS = {
   LINKEDIN_ICON: `${_ASSETS}${_ICONS}/linkedin-icon.svg`,
   LETTERBOXD_ICON: `${_ASSETS}${_ICONS}/letterboxd-icon.svg`,
   INSTAGRAM_ICON: `${_ASSETS}${_ICONS}/instagram-icon.svg`,
+  UP_ICON: `${_ASSETS}${_ICONS}/up-icon.svg`,
+  DOWN_ICON: `${_ASSETS}${_ICONS}/down-icon.svg`,
+  BACK_ICON: `${_ASSETS}${_ICONS}/back-icon.svg`,
 }

@@ -19,6 +19,7 @@ import {
   TopLanguages,
   Loader,
   Socials,
+  BackButton,
 } from '../components'
 
 const { useBreakpoint } = Grid
@@ -131,6 +132,7 @@ function Profile() {
         position: 'relative',
       }}
     >
+      <BackButton />
       {/* Scroll container provides the scroll space for animation */}
       <div
         ref={scrollContainerRef}

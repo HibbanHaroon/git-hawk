@@ -10,7 +10,7 @@ export async function getUser(username) {
     return { user, error: null }
   } catch (error) {
     console.log('Error: ' + error)
-    // Check if error message contains 404 status
+    // Checking if error message contains 404 status
     const is404 = error.message && error.message.includes('404')
     return { user: null, error: is404 ? 'USER_NOT_FOUND' : 'UNKNOWN_ERROR' }
   }
